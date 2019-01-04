@@ -15,7 +15,7 @@ export default {
   },
   mixins: [UserMediaMixin],
   methods: {
-    async isSupport () {
+    async isH5RecordSupport () {
       if (window.Worker) {
         if (window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext) {
           const stream = await this.getUserMedia(this.constraints)
@@ -28,7 +28,7 @@ export default {
       }
       return false
     },
-    async startRecord () {
+    async startH5Record () {
       if (!this.ctx) {
         this.ctx = new (window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext)()
       }
@@ -61,7 +61,7 @@ export default {
 
       this.mediaStreamSource.connect(this.scriptProcessor)
     },
-    stopRecord () {
+    stopH5Record () {
       this.stop(this.stream)
       this.mediaStreamSource.disconnect()
       this.scriptProcessor.disconnect()
