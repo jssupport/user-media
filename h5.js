@@ -72,6 +72,7 @@ export default {
     // 并且由于不给outputBuffer设置内容，所以扬声器不会播放出声音
     this.scriptProcessor.connect(this.ctx.destination)
 
+    // 某些情况下, ctx 的初始状态为 suspended, 需要将之切换为 running
     if (this.ctx.state === 'suspended') {
       await this.ctx.resume()
     }
